@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-electron/
+.DS_Store
+.next/
+out/
+build/
+*.log
+.env*
+models/
+history.json
