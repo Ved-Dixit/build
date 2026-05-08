@@ -40,8 +40,10 @@ jobs:
       - name: Install Dependencies
         working-directory: ./desktop-app
         run: |
-          npm config set fetch-retry-mintimeout 20000
-          npm config set fetch-retry-maxtimeout 120000
+          npm config set fetch-retries 10
+          npm config set fetch-retry-mintimeout 60000
+          npm config set fetch-retry-maxtimeout 300000
+          npm config set maxsockets 3
           npm install
 
       - name: Build and Release

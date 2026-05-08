@@ -19,12 +19,20 @@ function createWindow() {
 
   if (!app.isPackaged) {
     mainWindow.loadURL('http://localhost:5173');
-    // mainWindow.webContents.openDevTools();
   } else {
-    const indexPath = path.join(__dirname, '..', 'dist', 'index.html');
-    mainWindow.loadFile(indexPath).catch((err) => {
-      console.error('Failed to load index.html:', err);
-    });
+    // More robust path resolution for Windows
+    const indexPath = path.resolve(__dirname, '..', 'dist', 'index.html');
+    
+    if (fs.existsSync(indexPath)) {
+      mainWindow.loadFile(indexPath).catch((err) => {
+        console.error('Failed to load index.html:', err);
+      });
+    } else {
+      console.error('CRITICAL: index.html not found at:', indexPath);
+      // Try a fallback path often used by electron-builder
+      const fallbackPath = path.join(app.getAppPath(), 'dist', 'index.html');
+      mainWindow.loadFile(fallbackPath);
+    }
   }
 
   mainWindow.on('closed', () => {
