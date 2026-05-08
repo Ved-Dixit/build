@@ -51,5 +51,6 @@ jobs:
         run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ELECTRON_BUILDER_HTTP_TIMEOUT: 300000
-          ELECTRON_BUILDER_HTTP_RETRY_COUNT: 10
+          ELECTRON_BUILDER_HTTP_TIMEOUT: 600000
+          ELECTRON_BUILDER_HTTP_RETRY_COUNT: 20
+          ELECTRON_MIRROR: "https://npmmirror.com/mirrors/electron/"
