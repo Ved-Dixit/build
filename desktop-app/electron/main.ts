@@ -17,11 +17,14 @@ function createWindow() {
     },
   });
 
-  if (process.env.NODE_ENV === 'development') {
+  if (!app.isPackaged) {
     mainWindow.loadURL('http://localhost:5173');
     // mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    const indexPath = path.join(__dirname, '..', 'dist', 'index.html');
+    mainWindow.loadFile(indexPath).catch((err) => {
+      console.error('Failed to load index.html:', err);
+    });
   }
 
   mainWindow.on('closed', () => {
@@ -31,6 +34,18 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
+
+  // Enable DevTools for debugging even in production
+  app.on('browser-window-created', (event, window) => {
+    window.webContents.on('before-input-event', (event, input) => {
+      if (input.control && input.shift && input.key.toLowerCase() === 'i') {
+        window.webContents.openDevTools();
+      }
+      if (input.key === 'F12') {
+        window.webContents.openDevTools();
+      }
+    });
+  });
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
