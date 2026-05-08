@@ -1,7 +1,11 @@
 {
   "name": "desktop-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Buildio - Local AI Code Generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ved-Dixit/build.git"
+  },
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "concurrently -k \"npm run dev:vite\" \"npm run dev:electron\"",
