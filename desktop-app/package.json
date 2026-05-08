@@ -32,7 +32,7 @@
     }
   },
   "keywords": [],
-  "author": "",
+  "author": "Ved Dixit <veddixit195@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "@huggingface/hub": "^2.11.2",
