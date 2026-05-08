@@ -22,13 +22,16 @@
     },
     "mac": {
       "category": "public.app-category.developer-tools",
-      "target": ["dmg", "zip"]
+      "target": ["dmg", "zip"],
+      "artifactName": "buildio-mac-${arch}.${ext}"
     },
     "win": {
-      "target": ["nsis", "portable"]
+      "target": ["nsis", "portable"],
+      "artifactName": "buildio-windows.${ext}"
     },
     "linux": {
-      "target": ["AppImage", "deb"]
+      "target": ["AppImage", "deb"],
+      "artifactName": "buildio-linux.${ext}"
     }
   },
   "keywords": [],
