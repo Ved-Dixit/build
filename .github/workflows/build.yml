@@ -48,9 +48,17 @@ jobs:
 
       - name: Build and Release
         working-directory: ./desktop-app
-        run: npm run build
+        shell: bash
+        run: |
+          for i in 1 2 3; do
+            echo "Build attempt $i..."
+            npm run build && break || {
+              echo "Build failed, waiting 15 seconds before retry..."
+              sleep 15
+              if [ $i -eq 3 ]; then exit 1; fi
+            }
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ELECTRON_BUILDER_HTTP_TIMEOUT: 600000
-          ELECTRON_BUILDER_HTTP_RETRY_COUNT: 20
-          ELECTRON_MIRROR: "https://npmmirror.com/mirrors/electron/"
+          DEBUG: electron-builder

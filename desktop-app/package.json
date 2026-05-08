@@ -1,6 +1,6 @@
 {
   "name": "desktop-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Buildio - Local AI Code Generator",
   "repository": {
     "type": "git",
