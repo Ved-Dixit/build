@@ -11,6 +11,7 @@ on:
 jobs:
   release:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
     permissions:
       contents: write
     strategy:
@@ -38,7 +39,10 @@ jobs:
 
       - name: Install Dependencies
         working-directory: ./desktop-app
-        run: npm install
+        run: |
+          npm config set fetch-retry-mintimeout 20000
+          npm config set fetch-retry-maxtimeout 120000
+          npm install
 
       - name: Build and Release
         working-directory: ./desktop-app
