@@ -23,7 +23,11 @@
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": ["dmg", "zip"],
-      "artifactName": "buildio-mac-${arch}.${ext}"
+      "artifactName": "buildio-mac-${arch}.${ext}",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "electron/entitlements.mac.plist",
+      "entitlementsInherit": "electron/entitlements.mac.plist"
     },
     "win": {
       "target": ["nsis", "portable"],
