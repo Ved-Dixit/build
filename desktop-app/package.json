@@ -11,8 +11,8 @@
     "dev": "concurrently -k \"npm run dev:vite\" \"npm run dev:electron\"",
     "dev:vite": "vite",
     "dev:electron": "wait-on tcp:5173 && tsc -p electron/tsconfig.json && cross-env NODE_ENV=development electron .",
-    "build": "tsc -p electron/tsconfig.json && vite build && electron-builder",
-    "build:all": "tsc -p electron/tsconfig.json && vite build && electron-builder --mac --win --linux"
+    "build": "tsc -p electron/tsconfig.json && vite build && electron-builder --publish always",
+    "build:all": "tsc -p electron/tsconfig.json && vite build && electron-builder --mac --win --linux --publish always"
   },
   "build": {
     "appId": "com.buildio.app",
