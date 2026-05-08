@@ -61,4 +61,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ELECTRON_BUILDER_HTTP_TIMEOUT: 600000
+          NODE_OPTIONS: "--dns-result-order=ipv4first"
           DEBUG: electron-builder
